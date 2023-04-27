@@ -35,6 +35,7 @@ class ListCatsAdapter (
 
             Picasso.get()
                 .load("${ApiConstants.BaseImages}${cat.imageUrl}.jpg")
+                .placeholder(R.drawable.placeholder)
                 .into(view.findViewById<ImageView>(R.id.imageView_photo))
         }
     }
