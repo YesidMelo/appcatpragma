@@ -1,4 +1,4 @@
-package com.pruebatecnica.appcatspragma
+package com.pruebatecnica.appcatspragma.views.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.pruebatecnica.appcatspragma.R
 import com.pruebatecnica.appcatspragma.data.ApiCats
 import com.pruebatecnica.appcatspragma.data.ApiCatsImpl
 import com.pruebatecnica.appcatspragma.databinding.ActivityMainBinding
