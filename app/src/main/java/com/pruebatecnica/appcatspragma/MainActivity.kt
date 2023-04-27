@@ -1,6 +1,7 @@
 package com.pruebatecnica.appcatspragma
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -9,7 +10,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.pruebatecnica.appcatspragma.data.ApiCats
+import com.pruebatecnica.appcatspragma.data.ApiCatsImpl
 import com.pruebatecnica.appcatspragma.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +37,23 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+        }
+
+        testApis()
+    }
+
+    fun testApis() {
+        GlobalScope.launch {
+            val api: ApiCats = ApiCatsImpl();
+            api.getListCats()
+                .catch {
+                    Log.e("Err", "surgio un error")
+                }
+                .collect{
+                    list->
+                    Log.e("Err", "llego la lista");
+                }
+
         }
     }
 

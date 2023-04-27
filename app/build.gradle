@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.pruebatecnica.appcatspragma'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.pruebatecnica.appcatspragma"
         minSdk 22
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -46,4 +46,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //region gestores datos
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    //endregion
+    
 }
