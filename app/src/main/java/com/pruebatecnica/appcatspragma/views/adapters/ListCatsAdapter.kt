@@ -1,5 +1,6 @@
 package com.pruebatecnica.appcatspragma.views.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.pruebatecnica.appcatspragma.data.ApiConstants
 import com.pruebatecnica.appcatspragma.models.Cat
 import com.squareup.picasso.Picasso
 
+@SuppressLint("SetTextI18n")
 class ListCatsAdapter (
     val listCats : List<Cat>
 ) : RecyclerView.Adapter<ListCatsAdapter.Holder>() {
@@ -30,8 +32,8 @@ class ListCatsAdapter (
     inner class Holder(val view: View) : RecyclerView.ViewHolder(view) {
         fun fill(cat: Cat) {
             view.findViewById<TextView>(R.id.textView_nameBreed).text = cat.breedName
-            view.findViewById<TextView>(R.id.textView_countryOrigin).text = cat.origin
-            view.findViewById<TextView>(R.id.textView_intelligence).text = cat.intelligence
+            view.findViewById<TextView>(R.id.textView_countryOrigin).text = "${view.context.getString(R.string.country)}: ${cat.origin}"
+            view.findViewById<TextView>(R.id.textView_intelligence).text = "${view.context.getString(R.string.intelligence)}: ${cat.intelligence}"
 
             Picasso.get()
                 .load("${ApiConstants.BaseImages}${cat.imageUrl}.jpg")
