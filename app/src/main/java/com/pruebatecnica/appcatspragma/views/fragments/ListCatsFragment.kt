@@ -1,5 +1,6 @@
 package com.pruebatecnica.appcatspragma.views.fragments
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,6 +38,7 @@ class ListCatsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         listenListCats()
         listenExceptions()
+        reloadView()
         viewModel.loadListCats()
     }
 
@@ -53,6 +55,8 @@ class ListCatsFragment : Fragment() {
                 binding.recyclerviewCatlist.adapter = ListCatsAdapter(listCats = it)
                 binding.recyclerviewCatlist.layoutManager = LinearLayoutManager(context)
                 binding.recyclerviewCatlist.setHasFixedSize(true)
+                binding.textViewWithoutList.visibility = View.GONE
+                binding.recyclerviewCatlist.visibility = View.VISIBLE
             }
     }
 
@@ -61,9 +65,19 @@ class ListCatsFragment : Fragment() {
             .notifyErrorLiveData()
             .observe(viewLifecycleOwner) {
                 if (it == null) return@observe
-                Snackbar.make(binding.root, "Surgio un problema inesperado", Snackbar.LENGTH_LONG)
+                binding.textViewWithoutList.visibility = View.VISIBLE
+                binding.recyclerviewCatlist.visibility = View.GONE
+                Snackbar.make(binding.root, "Surgio un problema inesperado, revisa tu conexion a internet", Snackbar.LENGTH_LONG)
                     .setAction("Aceptar", null).show()
             }
+    }
+
+    private fun reloadView() {
+        binding.textViewWithoutList.setOnClickListener {
+            binding.textViewWithoutList.visibility = View.GONE
+            binding.recyclerviewCatlist.visibility = View.GONE
+            viewModel.loadListCats()
+        }
     }
 
     //endregion

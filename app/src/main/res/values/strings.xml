@@ -12,4 +12,5 @@
     <string name="catbreeds">Catbreeds</string>
     <string name="intelligence">Inteligencia</string>
     <string name="country">País</string>
+    <string name="lista_gatos_vacia">Lista de gatitos vacia. Tocame para recargar la pantalla :)</string>
 </resources>

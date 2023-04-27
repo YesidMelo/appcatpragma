@@ -25,7 +25,7 @@ class ApiCatsImpl : ApiCats {
             val listCats = apis.getCats()
             emit(listCats)
         } catch (e: Exception) {
-            Log.e("Error", "error");
+            throw e
         }
     }
 
